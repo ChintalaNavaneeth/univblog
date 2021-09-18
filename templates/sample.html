@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+<body>
+    <div class="w3-container">
+        <div class="w3-card-4" style="width: 70%">
+            <header class="w3-container w3-light-grey">
+                <h3>{{post.title}}</h3>
+            </header>
+            <div class="w3-container">
+                <p>
+                    {{post.time_upload}}
+                    <br />
+                    {{post.read}} - Views
+                </p>
+                <hr />
+                <img src="{{post.thumbnail}}" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                    style="width: 60px" />
+                <p class="card-text" style="   overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;">{{post.overview}}</p>
+
+                <br />
+            </div>
+            <a href="{% url 'post' post.id post.slug %}" class="btn btn-success"
+                style="background-color: lightcoral">Read More</a>
+            <a href="{% url 'editblog' post.id%}" class="btn btn-dark">Edit Blog</a>
+            <a href="{% url 'deleteblog' post.id%}" class="btn btn-danger">Delete Blog</a>
+        </div>
+    </div>
+</body>
+
+</html>

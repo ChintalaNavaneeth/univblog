@@ -1,0 +1,133 @@
+{% extends 'base.html' %} {% block body %} {% load static %}
+
+<body>
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header mb-5 pt-6 pt-lg-8 d-flex align-items-center"></div>
+    </div>
+
+    <!-- Page content -->
+    <div class=" container-fluid mt--7">
+        <div class="row">
+            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                <div class="card card-profile shadow">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 order-lg-2">
+                            <div class="card-profile-image">
+                                <a href="#">
+                                    <img src="{{request.user.profile.profileimg.url}}" class="circle"
+                                        style="border: 2px solid lightblue;" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                        <div class="d-flex justify-content-between">
+                            <!-- <a href="#" class="btn btn-sm btn-info mr-4">Connect</a> -->
+                            <!-- <a href="#" class="btn btn-sm btn-default float-right" -->
+                            <!-- >Message</a> -->
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 pt-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="
+                      card-profile-stats
+                      d-flex
+                      justify-content-center
+                      mt-md-5
+                    ">
+
+                                </div>
+                            </div>
+                        </div>
+                        {% for info in infod %}
+                        <div class="text-center">
+                            <h2>
+                                {{info.fname}} {{info.lname}}<span class="font-weight-light">, {{info.age}}</span>
+                            </h2>
+                            <div class="h2 font-weight-300">
+                                <i class="ni location_pin mr-2"></i>{{info.city}}, {{info.country}}
+                            </div>
+                            <div class="h2 mt-4">
+                                <i class="ni business_briefcase-24 mr-2"></i>{{info.profession}}
+                            </div>
+                            <div class="h2 mt-4">
+                                <i class="ni education_hat mr-2"></i>{{info.specialization}}
+                            </div>
+                            <hr class="h3 my-4" />
+                            <p>{{info.bio}}
+                            </p>
+                            <div class="col-15 text-center">
+                                <a href="{% url 'editprofile' user.id %}" class="btn btn-lg btn-primary">Edit Profle</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">My Blogs</h3>
+                                <!-- <hr> -->
+                            </div>
+                            <div class="col-4 text-right">
+                                <a href="{% url 'newblog' user.id %}" class=" btn-lg btn-success ">Create New Blog</a>
+                            </div>
+                            <div class="row mt-5">
+                                {% for post in posts %}
+                                <div class="w3-container">
+                                    <div class="w3-card-3"
+                                        style="margin-left:25px; width: 95%;height: 100%;border:1px solid gray;border-radius: 5px; ">
+                                        <header class="w3-container w3-light-grey">
+                                            <h3>{{post.title}}</h3>
+                                        </header>
+                                        <div class="w3-container mt-1">
+                                            <p>
+                                                Created : {{post.time_upload}}
+                                                <br />
+                                                {{post.read}} - Views
+                                            </p>
+                                            <hr />
+                                            <img src="{{post.thumbnail}}" alt="Avatar"
+                                                class="w3-left w3-circle w3-margin-right" style="width: 60px" />
+                                            <p class="card-text"
+                                                style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                                {{post.overview}}</p>
+
+                                            <br />
+                                        </div>
+                                        <div
+                                            style="display: flex;justify-content: space-around;align-items: center; margin-bottom: 9px;">
+                                            <div><a href="{% url 'post' post.id post.slug %}" class="btn btn-success"
+                                                    style="background-color: lightskyblue;color: black">Read
+                                                    More</a></div>
+                                            <div> <a href="{% url 'editblog' post.id%}" class="btn btn-dark">Edit
+                                                    Blog</a></div>
+                                            <div>
+                                                <a href="{% url 'deleteblog' post.id%}"
+                                                    style="background-color: lightcoral;" class="btn btn-danger">Delete
+                                                    Blog</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+{% endblock body %}

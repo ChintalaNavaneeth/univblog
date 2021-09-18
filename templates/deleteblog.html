@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<div class="container" style="position: absolute; top: 50%; left: 40%">
+  {% for postid in postid %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    <h1>Are you Sure?</h1>
+    <h2>Do you want to delete the blog</h2>
+     <h1>{{postid.title}}<h1/>
+    <button type="submit" class="btn btn-danger" >Yes I'm sure</button>
+    <a class="btn btn-info" href="{% url 'home' %}">No take me back</a>
+  </form>
+  {% endfor %}
+
+</div>
+{% endblock body %}

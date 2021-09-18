@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="images/fav-icon.png" />
+    <link rel="stylesheet" href="formstyles.css" />
+
+    <title>Univ`Blog Sign-Up</title>
+  </head>
+
+  <body>
+    {% block body %} {% if otp %}
+    <section class="container">
+      <div class="l-form" id="l-form">
+        <form action="" class="form form-first" method="POST">
+          {% csrf_token %}
+          <div class="alert alert-success" role="alert">
+            <div class="alert-heading">
+              {{form.errors}} {% for message in messages %}
+              <p id="messages">{{message}}</p>
+              {% endfor %}
+            </div>
+          </div>
+          <h3 class="form__title">Enter OTP to Verify your Account</h3>
+          <div class="form__div">
+            <input class="form__input" type="text" name="otp" id="" />
+            <label for="" class="form__label">OTP</label>
+          </div>
+          <div>
+            <input type="hidden" name="usr" id="" value="{{usr.username}}" />
+          </div>
+          <fieldset>
+            <div class="buttons">
+              <button class="btn maintainbtn" type="submit">Verify OTP</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </section>
+    {% comment %} --------------------------------------- {% endcomment %}
+    {%else %}
+    <section class="container">
+      <div class="l-form" id="l-form">
+        <form action="" class="form form-first" method="POST">
+          {% csrf_token %}
+          <div class="alert alert-success" role="alert">
+            <div class="alert-heading">
+              {{form.errors}} {% for message in messages %}
+              <p id="messages">{{message}}</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <h1 class="form__title">Sign-Up</h1>
+          <div class="form__div">
+            {{form.username}}
+            <label for="" class="form__label">Reg.No</label>
+          </div>
+
+          <div class="form__div">
+            {{form.email}}
+            <label for="" class="form__label">{{form.email.label}}</label>
+          </div>
+          <div class="form__div">
+            {{form.password1}}
+            <label for="" class="form__label">Password</label>
+          </div>
+          <div class="form__div">
+            {{form.password2}}
+            <label for="" class="form__label">Confirm Password</label>
+          </div>
+
+          <div class="buttons">
+            <button class="form__button__submit" type="submit">Confirm</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    {% endif %} {% endblock body %}
+  </body>
+</html>

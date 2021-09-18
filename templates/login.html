@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="l-form">
+    <form action="" class="form" method ="POST">
+    {% csrf_token %}
+      {% comment %} <h1 class="form__title__main">Univ`Blog</h1><br/> {% endcomment %}
+      <h2 class="form__title">Sign In</h2>
+       {{form.errors}}
+          <div class="alert alert-info" role="alert">
+            <div class="alert-heading">
+              {% for message in messages %}
+              <p id="messages">{{message}}</p>
+              {% endfor %}
+            </div>
+          </div>
+      <div class="form__div">
+        <input type="text" name="username" class="form__input" placeholder=" " required />
+        <label for="" class="form__label">Reg.No</label>
+      </div>
+
+      <div class="form__div">
+        <input type="password" name="password" class="form__input" placeholder=" " required />
+        <label for="" class="form__label">Password</label>
+      </div>
+
+      <div class="buttons">
+        <div>
+          <input type="submit" class="form__button__submit" value="Sign-In" />
+        </div>
+        <div>
+          <input type="reset" class="form__button__reset" value="Reset" />
+        </div>
+      </div>
+	<div style="display:flex;justify-content:space-around">
+		<div>
+      			<a class="forgot-password" href="{% url 'password_reset' %}">Forgot Password??</a></div>
+		</div>
+		<div>
+      			<a class="forgot-password" href="{% url 'signup' %}">Sign-Up</a>
+		</div>
+	</div>
+    </form>
+  </div>
+  {% endblock body %}
+  

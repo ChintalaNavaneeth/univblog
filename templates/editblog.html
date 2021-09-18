@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+ <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.errors}}
+                {{form.media}}
+                <div class="alert alert-info text-center mt-5" role="alert">
+                    <div class="alert-info">
+                        {% for message in messages %}
+                        <p id="messages">{{message}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% comment %} <h4 class="heading-small text-muted mb-4">User information</h4> {% endcomment %}
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-username">Title :</label>
+                                {{form.title}}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-lname">Description</label>
+                                {{form.overview}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4" />
+                    <!-- Address -->
+                    {% comment %} <h5 class="heading-small text-muted mb-4">Other Information</h5> {% endcomment %}
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-md-20">
+                                <div class="form-group focused">
+                                    <label class="form-control-label" for="input-profession">Main Content</label>
+                                    {{form.body_text|safe}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4" />
+                    <!-- Description -->
+                    {% comment %} <h5 class="heading-small text-muted mb-4">About me</h5> {% endcomment %}
+
+                    <div class="pl-lg-4">
+                        <div class="form-group focused">
+                            <label>Thumbnail</label>
+                            {{form.thumbnail}}
+                        </div>
+                         <div class="form-group focused">
+                            <label>Publish</label>
+                            {{form.publish}}
+                        </div>
+                         <div class="form-group focused">
+                            <label>Categories</label>
+                            {{form.categories}}
+                        </div>
+                    </div>
+
+
+                    <div class="col-7 text-center">
+                        <button type="submit" class="form__button__submit">
+                            Save Blog
+                        </button>
+                    </div>
+            </form>
+{% endblock body %}
